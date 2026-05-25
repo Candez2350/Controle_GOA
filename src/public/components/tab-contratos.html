@@ -1,0 +1,118 @@
+<!-- ABA 2: CONTRATOS -->
+<div id="tab-contratos" class="tab-pane">
+    <div class="actions-bar">
+        <div class="filters">
+            <input type="text" id="filter-contrato-num" placeholder="Filtrar por número...">
+        </div>
+        <div class="buttons">
+            <button class="btn btn-primary btn-with-icon" id="btn-modal-contrato">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Novo Contrato Mãe
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-3" id="contratos-cards-grid">
+        <!-- Carregado via JS -->
+    </div>
+
+    <!-- DETALHAMENTO DE CONTRATO (Escondido por padrão) -->
+    <div id="contrato-detail-section" class="panel-box hidden margin-top-md">
+        <div class="header-with-actions">
+            <div>
+                <h3 id="detail-contrato-title">Contrato nº 000/2026</h3>
+                <p class="text-muted" id="detail-contrato-empresa">Helibras S/A</p>
+            </div>
+            <button class="btn btn-outline" id="btn-close-contrato-detail">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Fechar Detalhes
+            </button>
+        </div>
+        
+        <div class="grid grid-4 text-sm margin-top-sm margin-bottom-md" style="padding: 15px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+            <div><strong>Processo SEI:</strong> <span id="detail-contrato-sei">-</span></div>
+            <div><strong>Vigência:</strong> <span id="detail-contrato-vigencia">-</span></div>
+            <div><strong>Valor Total:</strong> <span id="detail-contrato-valor">-</span></div>
+        </div>
+
+        <div class="tabs-navigation margin-top-md" style="border-bottom: 1px solid var(--color-border); margin-bottom: 20px;">
+            <button class="btn-tab-analytical active" data-target="analytics-aditivos" style="display:inline-flex; width:auto; border-radius:0; border-bottom: 2px solid transparent; color: var(--color-text-main); padding: 10px 15px; background: transparent; border: none; font-weight: 600; cursor: pointer;">Termos Aditivos</button>
+            <button class="btn-tab-analytical" data-target="analytics-os" style="display:inline-flex; width:auto; border-radius:0; border-bottom: 2px solid transparent; color: var(--color-text-main); padding: 10px 15px; background: transparent; border: none; font-weight: 600; cursor: pointer;">Ordens de Serviço</button>
+            <button class="btn-tab-analytical" data-target="analytics-nfs" style="display:inline-flex; width:auto; border-radius:0; border-bottom: 2px solid transparent; color: var(--color-text-main); padding: 10px 15px; background: transparent; border: none; font-weight: 600; cursor: pointer;">Notas Fiscais</button>
+        </div>
+
+        <!-- TAB: ADITIVOS -->
+        <div id="analytics-aditivos" class="tab-content-analytical active">
+            <div class="header-with-actions margin-top-md">
+                <h4>Termos Aditivos / Adesões Vigentes</h4>
+                <button class="btn btn-primary btn-sm btn-with-icon btn-admin-only" id="btn-modal-adesao">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Nova Adesão
+                </button>
+            </div>
+            <div class="table-responsive margin-top-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Termo Aditivo</th>
+                            <th>Processo SEI</th>
+                            <th>PNCP</th>
+                            <th>Vigência</th>
+                            <th>Valor Aditivado</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-adesoes">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB: ORDENS DE SERVIÇO -->
+        <div id="analytics-os" class="tab-content-analytical hidden">
+            <div class="header-with-actions margin-top-md">
+                <h4>Ordens de Serviço Vinculadas</h4>
+            </div>
+            <div class="table-responsive margin-top-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Cód OS</th>
+                            <th>Aeronave</th>
+                            <th>AOG</th>
+                            <th>Status</th>
+                            <th>Criado Em</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-analytics-os">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB: NOTAS FISCAIS -->
+        <div id="analytics-nfs" class="tab-content-analytical hidden">
+            <div class="header-with-actions margin-top-md">
+                <h4>Notas Fiscais (NFs) Vinculadas</h4>
+            </div>
+            <div class="table-responsive margin-top-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>NF</th>
+                            <th>Emissão</th>
+                            <th>Vencimento</th>
+                            <th>Valor NF</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-analytics-nfs">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

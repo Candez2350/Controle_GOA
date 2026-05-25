@@ -1,0 +1,479 @@
+<!-- MODAL: CONTRATO MÃE -->
+<div id="modal-contrato" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Contrato Mãe</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-contrato">
+            <input type="hidden" id="contrato-id">
+            <div class="form-section-title">Dados Gerais e Identificação</div>
+            <div class="form-group">
+                <label>Empresa Parceira</label>
+                <select id="contrato-empresa" required></select>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Número do Contrato</label>
+                    <input type="text" id="contrato-numero" placeholder="Ex: CTT 176/24" required>
+                </div>
+                <div class="form-group">
+                    <label>Processo SEI</label>
+                    <input type="text" id="contrato-sei" placeholder="Ex: SEI-270005/00..." required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Objeto / Escopo do Contrato</label>
+                <textarea id="contrato-objeto" rows="2" placeholder="Descreva os serviços..."></textarea>
+            </div>
+
+            <div class="form-section-title">Vigência, DOERJ e Valores</div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Publicação DOERJ</label>
+                    <input type="date" id="contrato-doerj">
+                </div>
+                <div class="form-group">
+                    <label>Link PNCP</label>
+                    <input type="text" id="contrato-pncp" placeholder="Ex: https://pncp.gov.br/...">
+                </div>
+            </div>
+            <div class="grid grid-3">
+                <div class="form-group">
+                    <label>Data Início (Vigência)</label>
+                    <input type="date" id="contrato-data-inicio" required>
+                </div>
+                <div class="form-group">
+                    <label>Data Fim Calculada</label>
+                    <input type="date" id="contrato-data-fim" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor Total do Contrato</label>
+                    <input type="number" step="0.01" id="contrato-valor" placeholder="Ex: 5000000.00" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Salvar Contrato</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: ADESÃO / ADITIVO -->
+<div id="modal-adesao" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Termo Aditivo / Adesão</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-adesao">
+            <input type="hidden" id="adesao-id">
+            <input type="hidden" id="adesao-contrato-id">
+            <div class="form-section-title">Vínculo Contratual</div>
+            <div class="form-group">
+                <label>Contrato Mãe Associado</label>
+                <input type="text" id="adesao-contrato-nome" readonly class="input-readonly">
+            </div>
+            <div class="form-section-title">Dados do Termo Aditivo</div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Número do Termo Aditivo</label>
+                    <input type="text" id="adesao-numero" placeholder="Ex: 1º Termo Aditivo" required>
+                </div>
+                <div class="form-group">
+                    <label>Processo SEI</label>
+                    <input type="text" id="adesao-sei" placeholder="Ex: SEI-270005/01..." required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Código PNCP</label>
+                <input type="text" id="adesao-pncp" placeholder="Ex: Link PNCP">
+            </div>
+            <div class="grid grid-3">
+                <div class="form-group">
+                    <label>Data Início</label>
+                    <input type="date" id="adesao-data-inicio" required>
+                </div>
+                <div class="form-group">
+                    <label>Data Fim Calculado</label>
+                    <input type="date" id="adesao-data-fim" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor Aditivado</label>
+                    <input type="number" step="0.01" id="adesao-valor" placeholder="Ex: 150000.00" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Registrar Termo Aditivo</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: ABRIR ORDEM DE SERVIÇO (OSE/RMS) -->
+<div id="modal-os" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Ordem de Serviço (OSE / RMS)</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-os">
+            <input type="hidden" id="os-id">
+            <div class="form-section-title">Amparo Contratual</div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Contrato Amparador</label>
+                    <select id="os-contrato" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Aeronave Alvo</label>
+                    <select id="os-aeronave" required></select>
+                </div>
+            </div>
+            <div class="form-section-title">Identificação da Ordem de Serviço</div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Código da OS</label>
+                    <input type="text" id="os-codigo" placeholder="Ex: OSE 01/25 ou RMS 04/24" required>
+                </div>
+                <div class="form-group">
+                    <label>Processo SEI</label>
+                    <input type="text" id="os-sei" placeholder="Ex: SEI-270005/...">
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Data de Solicitação</label>
+                    <input type="date" id="os-data" required>
+                </div>
+                <div class="form-group">
+                    <label>Prazo Estimado (Dias)</label>
+                    <input type="number" id="os-prazo" placeholder="Ex: 30" required>
+                </div>
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="os-aog">
+                <label for="os-aog" style="color: var(--color-danger); font-weight: 600;">Status de Emergência: AOG (Aircraft on Ground / Aeronave Impedida de Voo)</label>
+            </div>
+            <div class="form-group">
+                <label>Observação Inicial / Sintoma da Manutenção</label>
+                <textarea id="os-observacao" rows="2" placeholder="Frequência de oscilação do torque..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Abrir Ordem de Serviço</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: NOVO ITEM DE REPARO -->
+<div id="modal-reparo" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Serviço / Reparo de Componente</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-reparo">
+            <input type="hidden" id="reparo-id">
+            <input type="hidden" id="reparo-os-id">
+            <div class="form-section-title">Identificação do Componente</div>
+            <div class="form-group">
+                <label>Descrição do Componente</label>
+                <input type="text" id="reparo-descricao" placeholder="Ex: Pá do Rotor de Cauda" required>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Part Number (P/N)</label>
+                    <input type="text" id="reparo-pn" placeholder="Ex: 355A12-0020-00" required>
+                </div>
+                <div class="form-group">
+                    <label>Serial Number (S/N)</label>
+                    <input type="text" id="reparo-sn" placeholder="Ex: S-8432">
+                </div>
+            </div>
+            <div class="form-section-title">Valores, Cotações e Garantias</div>
+            <div class="grid grid-3">
+                <div class="form-group">
+                    <label>Valor Reparo (Cotação)</label>
+                    <input type="number" step="0.01" id="reparo-valor" placeholder="Ex: 45000.00">
+                </div>
+                <div class="form-group">
+                    <label>Valor Peça Nova (Standard)</label>
+                    <input type="number" step="0.01" id="reparo-valor-novo" placeholder="Ex: 120000.00">
+                </div>
+                <div class="form-group">
+                    <label>Frete / Transporte</label>
+                    <input type="number" step="0.01" id="reparo-frete" placeholder="0.00">
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Código da Cotação</label>
+                    <input type="text" id="reparo-cotacao" placeholder="Ex: COT-8321/24">
+                </div>
+                <div class="form-group">
+                    <label>Garantia Até</label>
+                    <input type="date" id="reparo-garantia">
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Situação Atual da Oficina</label>
+                    <select id="reparo-situacao">
+                        <option value="PENDENTE">Pendente</option>
+                        <option value="APROVADO">Aprovado</option>
+                        <option value="EM_EXECUCAO">Em Execução</option>
+                        <option value="FINALIZADO">Finalizado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status GOA (Logística)</label>
+                    <select id="reparo-status-goa">
+                        <option value="NA_BASE">Na Base</option>
+                        <option value="ENVIADO">Enviado p/ Reparo</option>
+                        <option value="RETORNADO">Retornado (Atestado)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>AWB de Rastreio (Correios/Transportadora)</label>
+                    <input type="text" id="reparo-awb" placeholder="Ex: BR123456789">
+                </div>
+                <div class="form-group checkbox-group" style="flex-direction: column; align-items: flex-start; justify-content: center; padding-top:10px;">
+                    <div>
+                        <input type="checkbox" id="reparo-coleta" checked>
+                        <label for="reparo-coleta" style="margin-left: 5px;">Coleta Individual?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="reparo-exige-core" checked>
+                <label for="reparo-exige-core" style="color: var(--color-warning); font-weight: 600;">Exige Troca Padrão (De devolução de casco/Core Return)?</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Salvar Item de Reparo</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: NOVO PEÇA/MATERIAL -->
+<div id="modal-material" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Material para Aquisição</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-material">
+            <input type="hidden" id="material-id">
+            <input type="hidden" id="material-os-id">
+            <div class="form-section-title">Dados do Material / Peça</div>
+            <div class="form-group">
+                <label>Descrição do Item</label>
+                <input type="text" id="material-descricao" placeholder="Ex: Vedador elastômero" required>
+            </div>
+            <div class="grid grid-3">
+                <div class="form-group">
+                    <label>Part Number (P/N)</label>
+                    <input type="text" id="material-pn" placeholder="Ex: AGS-321-1">
+                </div>
+                <div class="form-group">
+                    <label>Equivalência EVO / EQU</label>
+                    <input type="text" id="material-evo" placeholder="Ex: EVO-991">
+                </div>
+                <div class="form-group">
+                    <label>Quantidade</label>
+                    <input type="number" id="material-qtd" value="1" required min="1">
+                </div>
+            </div>
+            <div class="form-section-title">Orçamento e Logística</div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Orçamento Aprovado</label>
+                    <input type="text" id="material-orcamento" placeholder="Ex: ORC-123/24">
+                </div>
+                <div class="form-group">
+                    <label>Data de Previsão de Entrega</label>
+                    <input type="date" id="material-previsao">
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Data Fim da Garantia</label>
+                    <input type="date" id="material-garantia">
+                </div>
+                <div class="form-group">
+                    <label>AWB de Rastreio / Remessa</label>
+                    <input type="text" id="material-awb" placeholder="Ex: AZUL-12345">
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="material-recebido">
+                    <label for="material-recebido" style="color: var(--color-success); font-weight: 600;">Material Recebido/Atestado na Base?</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="material-exige-core">
+                    <label for="material-exige-core" style="color: var(--color-warning); font-weight: 600;">Exige Devolução de Casco (Core Return)?</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Salvar Material</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: VINCULAR NOTA FISCAL (FATURAMENTO PARCIAL) -->
+<div id="modal-faturamento-vinculo" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Atestar Faturamento Parcial</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-faturamento-vinculo">
+            <input type="hidden" id="fat-reparos-ids">
+            <input type="hidden" id="fat-materiais-ids">
+            <p class="form-subtitle" style="margin-bottom: 15px; color: var(--color-text-muted); font-size: 13px;">Selecione uma Nota Fiscal existente do contrato para associar os itens selecionados.</p>
+            <div class="form-group">
+                <label>Nota Fiscal Lançada</label>
+                <select id="fat-selecao-nf" required></select>
+            </div>
+            <button type="submit" class="btn btn-success btn-block margin-top-sm">Faturar e Vincular Itens</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: LANÇAR NOTA FISCAL -->
+<div id="modal-nf" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Lançamento de Nota Fiscal</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-nf">
+            <input type="hidden" id="nf-id">
+            <input type="hidden" id="nf-contrato-id">
+            <div class="form-section-title">Vínculo Financeiro</div>
+            <div class="form-group">
+                <label>Escolha o Vínculo Financeiro</label>
+                <select id="nf-vinculo-tipo" required>
+                    <option value="">Selecione...</option>
+                    <optgroup label="Contratos Mãe" id="nf-opt-contratos"></optgroup>
+                    <optgroup label="Termos Aditivos (Adesões)" id="nf-opt-adesoes"></optgroup>
+                </select>
+            </div>
+            <div class="form-section-title">Identificação da Nota Fiscal</div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Número da Nota Fiscal</label>
+                    <input type="text" id="nf-numero" placeholder="Ex: NF 10243" required>
+                </div>
+                <div class="form-group">
+                    <label>Processo SEI DGAF (Pagamento)</label>
+                    <input type="text" id="nf-sei" placeholder="Ex: SEI-270005/...">
+                </div>
+            </div>
+            <div class="grid grid-3">
+                <div class="form-group">
+                    <label>Data de Emissão</label>
+                    <input type="date" id="nf-emissao" required>
+                </div>
+                <div class="form-group">
+                    <label>Data de Vencimento</label>
+                    <input type="date" id="nf-vencimento" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor da Nota Fiscal (R$)</label>
+                    <input type="number" step="0.01" id="nf-valor" placeholder="Ex: 75000.00" required>
+                </div>
+            </div>
+            <div class="form-section-title">Fonte Pagadora e Situação</div>
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label>Fonte Pagadora</label>
+                    <input type="text" id="nf-fonte" placeholder="Ex: SEDEC ou Seguradora">
+                </div>
+                <div class="form-group">
+                    <label>Situação Inicial</label>
+                    <select id="nf-situacao">
+                        <option value="PENDENTE">PENDENTE (Aguardando Liquidação)</option>
+                        <option value="PAGO">PAGO / ATESTADO</option>
+                        <option value="CANCELADO">CANCELADO</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Registrar Nota Fiscal</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: NOVA AERONAVE -->
+<div id="modal-aeronave" class="modal">
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h2>Gerenciar Aeronave</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-aeronave">
+            <input type="hidden" id="aeronave-id">
+            <div class="form-group">
+                <label>Prefixo Militar</label>
+                <input type="text" id="aeronave-prefixo" placeholder="Ex: PP-OBM" required>
+            </div>
+            <div class="form-group">
+                <label>Modelo / Fabricante</label>
+                <input type="text" id="aeronave-modelo" placeholder="Ex: AS 350 (Esquilo) ou AW 169" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Salvar Aeronave</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: NOVA EMPRESA -->
+<div id="modal-empresa" class="modal">
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h2>Cadastrar Empresa Conveniada</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-empresa">
+            <input type="hidden" id="empresa-id">
+            <div class="form-group">
+                <label>Nome / Razão Social</label>
+                <input type="text" id="empresa-nome" placeholder="Ex: Helibras S/A" required>
+            </div>
+            <div class="form-group">
+                <label>CNPJ da Empresa</label>
+                <input type="text" id="empresa-cnpj" placeholder="Ex: 00.000.000/0001-00" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Salvar Empresa</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: NOVO USUÁRIO -->
+<div id="modal-usuario" class="modal">
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h2>Gerenciar Usuário</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="form-usuario">
+            <input type="hidden" id="usuario-id">
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text" id="usuario-nome" placeholder="Ex: João da Silva" required>
+            </div>
+            <div class="form-group">
+                <label>E-mail Corporativo</label>
+                <input type="email" id="usuario-email" placeholder="nome@cbmerj.rj.gov.br" required>
+            </div>
+            <div class="form-group">
+                <label>Perfil de Acesso (Role)</label>
+                <select id="usuario-role" required>
+                    <option value="CONSULTA">Consulta (Leitura Apenas)</option>
+                    <option value="OPERADOR_MANUTENCAO">Operador de Manutenção</option>
+                    <option value="FISCAL_CONTRATO">Fiscal de Contrato</option>
+                    <option value="ADMIN">Administrador Geral</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Senha de Acesso (Deixe em branco para não alterar se já existir)</label>
+                <input type="password" id="usuario-senha" placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block margin-top-sm">Salvar Usuário</button>
+        </form>
+    </div>
+</div>

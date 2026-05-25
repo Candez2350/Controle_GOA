@@ -1,0 +1,121 @@
+<!-- ABA 3: ORDENS DE SERVIÇO -->
+<div id="tab-os" class="tab-pane">
+    <div class="actions-bar">
+        <div class="filters">
+            <select id="filter-os-contrato">
+                <option value="">Todos os Contratos</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="btn btn-primary btn-with-icon" id="btn-modal-os">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Abrir OSE / RMS
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-3" id="os-cards-grid">
+        <!-- Carregado via JS -->
+    </div>
+
+    <!-- PAINEL DETALHADO DA ORDEM DE SERVIÇO -->
+    <div id="os-detail-section" class="panel-box margin-top hidden">
+        <div class="detail-header">
+            <div>
+                <span class="badge badge-primary" id="detail-os-aog">AOG</span>
+                <h2 id="detail-os-title" style="display:inline-block; margin-left: 10px;">OSE 01/25</h2>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-outline" id="btn-concluir-os" style="margin-right:8px;">Concluir OS</button>
+                <button class="btn btn-sm btn-outline" id="btn-close-os-detail">Fechar Detalhes</button>
+            </div>
+        </div>
+        <hr>
+        <div class="grid grid-4 text-sm margin-bottom">
+            <div><strong>Aeronave:</strong> <span id="detail-os-aeronave">-</span></div>
+            <div><strong>Contrato Mãe:</strong> <span id="detail-os-contrato">-</span></div>
+            <div><strong>Processo SEI:</strong> <span id="detail-os-sei">-</span></div>
+            <div><strong>Solicitado em:</strong> <span id="detail-os-data">-</span></div>
+        </div>
+
+        <!-- SUB-ABAS DOS ITENS DA OS -->
+        <div class="os-items-tabs">
+            <button class="os-tab-btn active" data-subtab="reparos">Reparos & Serviços</button>
+            <button class="os-tab-btn" data-subtab="materiais">Materiais & Peças</button>
+        </div>
+
+        <!-- SUB-ABA: REPAROS -->
+        <div id="subtab-reparos" class="os-tab-content active">
+            <div class="section-header">
+                <h3>Itens de Reparos e Serviços</h3>
+                <button class="btn btn-sm btn-outline btn-with-icon" id="btn-modal-reparo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Novo Item de Reparo
+                </button>
+            </div>
+            
+            <!-- AÇÕES EM LOTE PARA FATURAMENTO PARCIAL -->
+            <div class="batch-actions-panel hidden" id="batch-reparos-panel">
+                <span>Itens selecionados para faturamento:</span>
+                <button class="btn btn-sm btn-success" id="btn-faturar-reparos-lote">Atestar Faturamento (Lote)</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;"><input type="checkbox" id="check-all-reparos"></th>
+                            <th>Componente / Peça</th>
+                            <th>P/N & S/N</th>
+                            <th>Cotação</th>
+                            <th>Valor Reparo</th>
+                            <th>Faturamento</th>
+                            <th>Core Return</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-os-reparos">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SUB-ABA: MATERIAIS -->
+        <div id="subtab-materiais" class="os-tab-content">
+            <div class="section-header">
+                <h3>Aquisição de Materiais e Peças</h3>
+                <button class="btn btn-sm btn-outline btn-with-icon" id="btn-modal-material">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Adicionar Peça / Material
+                </button>
+            </div>
+
+            <!-- AÇÕES EM LOTE PARA FATURAMENTO PARCIAL -->
+            <div class="batch-actions-panel hidden" id="batch-materiais-panel">
+                <span>Materiais selecionados para faturamento:</span>
+                <button class="btn btn-sm btn-success" id="btn-faturar-materiais-lote">Atestar Faturamento (Lote)</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;"><input type="checkbox" id="check-all-materiais"></th>
+                            <th>Item / Peça</th>
+                            <th>P/N & Qtd</th>
+                            <th>Orçamento</th>
+                            <th>Recebido</th>
+                            <th>Faturamento</th>
+                            <th>Core Return</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-os-materiais">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

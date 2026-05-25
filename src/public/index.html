@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOA - Sistema de Gestão de Contratos e Manutenção | CBMERJ</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Supabase JS CDN Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA DE LOGIN (COM OPÇÃO DE MOCK BYPASS OU REAL SUPABASE) -->
+    <div id="login-container" class="login-page">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-area">
+                    <svg class="fire-crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h1>CBMERJ - GOA</h1>
+                <p>Sistema de Gestão de Contratos e Manutenção de Aeronaves</p>
+            </div>
+            
+            <div id="login-error" class="alert alert-error hidden"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">E-mail Corporativo</label>
+                    <input type="email" id="login-email" placeholder="nome.sobrenome@cbmerj.rj.gov.br" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha de Acesso</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Acessar Sistema</button>
+            </form>
+
+            <div class="login-divider">
+                <span>OU ACESSO RÁPIDO PARA HOMOLOGAÇÃO</span>
+            </div>
+
+            <div class="mock-profiles">
+                <p class="mock-subtitle" style="color: var(--text-dark);">Escolha um perfil simulador para testar localmente:</p>
+                <div class="mock-buttons">
+                    <button class="btn btn-dark btn-mock" data-role="admin">
+                        <strong>ADMINISTRADOR</strong>
+                        <span>Controle Total e Parâmetros</span>
+                    </button>
+                    <button class="btn btn-dark btn-mock" data-role="fiscal">
+                        <strong>FISCAL DE CONTRATO</strong>
+                        <span>Financeiro e Notas Fiscais</span>
+                    </button>
+                    <button class="btn btn-dark btn-mock" data-role="operador">
+                        <strong>OPERADOR MANUTENÇÃO</strong>
+                        <span>Ordens de Serviço e Logística</span>
+                    </button>
+                    <button class="btn btn-dark btn-mock" data-role="consulta">
+                        <strong>CONSULTA</strong>
+                        <span>Visualização dos Dados</span>
+                    </button>
+                </div>
+            </div>
+            <div class="login-footer">
+                <p style="color: var(--text-dark);">© 2026 Grupo de Operações Aéreas - CBMERJ</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESTRUTURA PRINCIPAL DO SISTEMA -->
+    <div id="app-container" class="app-layout hidden">
+        
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+        
+        <!-- SIDEBAR DE NAVEGAÇÃO DINÂMICA -->
+        <div id="sidebar-container" class="sidebar"></div>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-title" style="display: flex; align-items: center; gap: 16px;">
+                    <button id="mobile-menu-toggle" class="btn btn-outline mobile-only-btn" style="padding: 8px; border: none; background: transparent; display: none;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                    <div>
+                        <h1 id="page-title">Painel Geral de Controle</h1>
+                        <p id="page-subtitle">Visão integrada de contratos, manutenção aérea e fluxo de caixa.</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div id="connection-indicator" class="connection-pill online">
+                        <span class="dot"></span>
+                        <span class="text">Sistema Conectado</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- CONTAINERS DINÂMICOS DAS ABAS -->
+                <div id="tab-dashboard-container"></div>
+                <div id="tab-contratos-container"></div>
+                <div id="tab-os-container"></div>
+                <div id="tab-notas-container"></div>
+                <div id="tab-aeronaves-container"></div>
+                <div id="tab-usuarios-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CONTAINER DE MODAIS DINÂMICOS -->
+    <div id="modals-container"></div>
+
+    <!-- TOAST ALERTS -->
+    <div id="financial-alert-toast" class="toast toast-error hidden">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="toast-content">
+            <strong>Bloqueio de Operação</strong>
+            <p id="toast-message">Mensagem de erro aqui.</p>
+        </div>
+    </div>
+
+    <!-- ES MODULE ENTRY POINT -->
+    <script type="module" src="app.js"></script>
+
+</body>
+</html>
