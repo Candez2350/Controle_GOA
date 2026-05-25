@@ -207,6 +207,12 @@ export function configurarEventosGerais() {
         abrirModal('modal-usuario');
     });
 
+    // Abrir modal de Alterar Senha
+    document.getElementById('btn-alterar-senha-trigger')?.addEventListener('click', () => {
+        document.getElementById('form-alterar-senha').reset();
+        abrirModal('modal-alterar-senha');
+    });
+
     // Novos eventos de botões internos das abas
     document.getElementById('btn-modal-adesao')?.addEventListener('click', () => {
         document.getElementById('form-adesao').reset();
@@ -569,6 +575,34 @@ export function configurarFormulariosGerais() {
             carregarUsuarios();
         } catch (err) {
             alert(err.message);
+        }
+    });
+
+    // 11. Alterar Senha (Usuário Logado)
+    document.getElementById('form-alterar-senha')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const novaSenha = document.getElementById('alterar-senha-nova').value;
+        const confirmarSenha = document.getElementById('alterar-senha-confirmar').value;
+
+        if (novaSenha !== confirmarSenha) {
+            alert('As senhas não coincidem. Por favor, verifique.');
+            return;
+        }
+
+        if (!state.user || !state.user.id) {
+            alert('Erro: Usuário não identificado. Por favor, faça login novamente.');
+            return;
+        }
+
+        try {
+            await apiFetch(`/auth/users/${state.user.id}`, {
+                method: 'PUT',
+                body: JSON.stringify({ senha: novaSenha })
+            });
+            alert('Senha atualizada com sucesso!');
+            fecharModal('modal-alterar-senha');
+        } catch (err) {
+            alert(err.message || 'Erro ao atualizar a senha.');
         }
     });
 }

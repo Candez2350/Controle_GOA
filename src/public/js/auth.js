@@ -14,7 +14,7 @@ export async function validarTokenEIniciar() {
         state.user = userData;
         
         // Atualizar informações visuais do perfil do usuário
-        document.getElementById('user-display-email').textContent = userData.isMock ? `Simulado: ${userData.role.toLowerCase()}@cbmerj.gov.br` : `Usuário: ${userData.id.substring(0,8)}`;
+        document.getElementById('user-display-email').textContent = userData.isMock ? `Simulado: ${userData.role.toLowerCase()}@cbmerj.gov.br` : userData.email;
         
         const roleBadge = document.getElementById('user-display-role');
         roleBadge.textContent = userData.role;
