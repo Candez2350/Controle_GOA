@@ -72,11 +72,13 @@ export function renderizarOsCards(lista) {
         `;
         grid.appendChild(card);
         
-        card.querySelector('.btn-edit-os').addEventListener('click', (e) => {
+        card.querySelector('.btn-edit-os').addEventListener('click', async (e) => {
             e.stopPropagation();
             document.getElementById('form-os').reset();
-            const btn = e.target;
+            const btn = e.target.closest('.btn-edit-os') || e.target;
             document.getElementById('os-id').value = btn.getAttribute('data-id');
+            await carregarDropdownContratos('os-contrato');
+            await carregarDropdownAeronaves('os-aeronave');
             document.getElementById('os-contrato').value = btn.getAttribute('data-contrato');
             document.getElementById('os-aeronave').value = btn.getAttribute('data-aero');
             document.getElementById('os-codigo').value = btn.getAttribute('data-codigo');

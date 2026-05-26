@@ -95,10 +95,11 @@ export async function carregarContratos() {
             grid.appendChild(card);
             
             // Edit
-            card.querySelector('.btn-edit-contrato').addEventListener('click', (e) => {
+            card.querySelector('.btn-edit-contrato').addEventListener('click', async (e) => {
                 e.stopPropagation();
                 document.getElementById('form-contrato').reset();
                 document.getElementById('contrato-id').value = c.id_contrato;
+                await carregarDropdownEmpresas('contrato-empresa');
                 document.getElementById('contrato-empresa').value = c.id_empresa;
                 document.getElementById('contrato-numero').value = c.numero_contrato;
                 document.getElementById('contrato-sei').value = c.processo_sei;

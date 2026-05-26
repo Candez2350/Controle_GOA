@@ -37,7 +37,7 @@ export async function carregarNotasFiscais() {
                 <td><span class="badge ${situacaoClass}">${n.situacao_atual}</span></td>
                 <td>
                     <div style="display:flex; gap:6px;">
-                        ${state.user.role !== 'CONSULTA' ? `<button class="btn btn-sm btn-outline btn-edit-nf" data-id="${n.id_nota_fiscal}" data-emissao="${n.data_emissao}" data-vencimento="${n.data_vencimento}" data-numero="${n.numero_nf}" data-valor="${n.valor_nf}" data-dgaf="${n.processo_dgaf || ''}" data-fonte="${n.fonte_pagadora || 'SEDEC'}">Editar</button>` : ''}
+                        ${state.user.role !== 'CONSULTA' ? `<button class="btn btn-sm btn-outline btn-edit-nf" data-id="${n.id_nota_fiscal}" data-emissao="${n.data_emissao}" data-vencimento="${n.data_vencimento}" data-numero="${n.numero_nf}" data-valor="${n.valor_nf}" data-dgaf="${n.processo_dgaf || ''}" data-fonte="${n.fonte_pagadora || 'SEDEC'}" data-contrato="${n.id_contrato || ''}" data-adesao="${n.id_adesao || ''}">Editar</button>` : ''}
                         ${n.situacao_atual === 'PENDENTE' && state.user.role !== 'OPERADOR_MANUTENCAO' && state.user.role !== 'CONSULTA' ? `<button class="btn btn-sm btn-success btn-atestar-nf" data-id="${n.id_nota_fiscal}">Atestar Pago</button>` : ''}
                         ${state.user.role === 'ADMIN' ? `<button class="btn btn-sm btn-outline btn-danger-text btn-deletar-nf" data-id="${n.id_nota_fiscal}">Remover</button>` : ''}
                     </div>
@@ -79,15 +79,27 @@ export async function carregarNotasFiscais() {
         
         // Eventos de edição
         tbody.querySelectorAll('.btn-edit-nf').forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', async () => {
                 document.getElementById('form-nf').reset();
                 document.getElementById('nf-id').value = btn.getAttribute('data-id');
+                
+                // load dropdown first
+                await carregarDropdownVinculoNf();
+                
+                const idContrato = btn.getAttribute('data-contrato');
+                const idAdesao = btn.getAttribute('data-adesao');
+                if (idAdesao) {
+                    document.getElementById('nf-vinculo-tipo').value = `adesao:${idAdesao}`;
+                } else if (idContrato) {
+                    document.getElementById('nf-vinculo-tipo').value = `contrato:${idContrato}`;
+                }
+
                 document.getElementById('nf-numero').value = btn.getAttribute('data-numero');
                 document.getElementById('nf-emissao').value = btn.getAttribute('data-emissao') ? btn.getAttribute('data-emissao').split('T')[0] : '';
                 document.getElementById('nf-vencimento').value = btn.getAttribute('data-vencimento') ? btn.getAttribute('data-vencimento').split('T')[0] : '';
                 document.getElementById('nf-valor').value = btn.getAttribute('data-valor');
-                document.getElementById('nf-processo-dgaf').value = btn.getAttribute('data-dgaf');
-                document.getElementById('nf-fonte-pagadora').value = btn.getAttribute('data-fonte');
+                document.getElementById('nf-sei').value = btn.getAttribute('data-dgaf');
+                document.getElementById('nf-fonte').value = btn.getAttribute('data-fonte');
                 abrirModal('modal-nf');
             });
         });
